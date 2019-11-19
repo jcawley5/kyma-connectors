@@ -11,4 +11,4 @@ longDescription: "Integrates SAP Fieldglass in preview mode by registering its E
 documentationURL: https://www.fieldglass.com/
 bindable: false
 provisionOnlyOnce: true
-imageUrl: https://raw.githubusercontent.com/jcawley5/kyma_examples/master/fieldglassconnector/logos/fieldglass.jpg
+imageUrl: https://raw.githubusercontent.com/jcawley5/kyma-connectors/master/addons/logos/fieldglass.jpg
