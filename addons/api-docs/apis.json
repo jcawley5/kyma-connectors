@@ -1,0 +1,55 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "Service to expose Fieldglass APIs",
+    "version": "1.0.0",
+    "title": "Fieldglass APIs"
+  },
+  "tags": [
+    {
+      "name": "fieldglass-api",
+      "description": "Fieldglass APIs",
+      "externalDocs": {
+        "description": "API to submit application posting to Job Seeker",
+        "url": "https://xcore1.fgvms.com/api/vc/connector/jobseeker"
+      }
+    }
+  ],
+  "paths": {
+    "/": {
+      "post": {
+        "tags": ["API to submit application posting to Job Seeker"],
+        "summary": "API to submit application posting to Job Seeker",
+        "description": "API to submit application posting to Job Seeker",
+        "operationId": "jobseeker",
+        "parameters": [
+          {
+            "name": "posting",
+            "in": "path",
+            "description": "return results in JSON format",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "500": {
+            "description": "The server encountered an error processing the request"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  }
+}

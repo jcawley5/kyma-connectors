@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "application_name": {
+      "type": "string",
+      "title": "Application Name",
+      "description": "The name of the Kyma Application where the APIs should be registered for consumption"
+    },
+    "username": {
+      "type": "string",
+      "title": "Username",
+      "description": "Username for event processing webhook"
+    },
+    "password": {
+      "type": "string",
+      "title": "Password",
+      "description": "Password for event processing webhook",
+      "format": "password"
+    },
+    "cluster_domain": {
+      "type": "string",
+      "title": "Cluster Domain",
+      "description": "The domain of the cluster. For example, `demo.cluster.extend.cx.cloud.sap`"
+    }
+  },
+  "required": [
+    "application_name",
+    "cluster_domain"
+  ]
+}
