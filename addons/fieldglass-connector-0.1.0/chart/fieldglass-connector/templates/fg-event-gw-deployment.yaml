@@ -6,6 +6,8 @@ kind: Secret
 metadata:
   creationTimestamp: null
   name: {{ template "bundle.fullname" . }}-fg-event-gw
+  annotations:
+    "helm.sh/hook-delete-policy": before-hook-creation
   labels:
     app: {{ template "bundle.fullname" . }}
     component: {{ template "bundle.fullname" . }}-fg-event-gw
@@ -16,6 +18,8 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: {{ template "bundle.fullname" . }}-{{ .Values.eventBridgeName }}
+  annotations:
+    "helm.sh/hook-delete-policy": before-hook-creation
   namespace: {{ .Values.namespace }}
   labels:
     app: {{ template "bundle.fullname" . }}
