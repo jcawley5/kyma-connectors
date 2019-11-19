@@ -8,7 +8,7 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 {{- end -}}
 
 {{- define "eb_server" -}}
-{{- printf "%s.%s" .Values.gatewayServerHost .Values.cluster_domain | trimSuffix " " | quote -}}
+{{- printf "%s-%s.%s" .Values.gatewayServerHost .Release.Namespace .Values.cluster_domain | trimSuffix " " | quote -}}
 {{- end -}}
 
 
