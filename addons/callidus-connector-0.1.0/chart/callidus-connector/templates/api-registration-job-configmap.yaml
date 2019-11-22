@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "bundle.fullname" . }}-{{ .Values.apiRegistrationJobName }}
+  labels:
+    app: {{ template "bundle.fullname" . }}
+    component: {{ template "bundle.fullname" . }}-{{ .Values.apiRegistrationJobName }}
+data:
+  APPLICATION_NAME: {{ .Values.application_name | quote }}
+  PROVIDER_NAME: "SAP"
+  PRODUCT_NAME: "SAP Callidus Cloud"
+  BASIC_USER: {{ .Values.username | quote }}
+  BASIC_PASSWORD: {{ .Values.password | quote }}
+  APP_KIND: rest-with-apikey
+  API_SPECIFICATION_URL: https://.json
+  API_DESCRIPTION: "APIs for SAP Callidus Cloud" 
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "bundle.fullname" . }}-{{ .Values.apiRegistrationJobName }}-api
+  labels:
+    app: {{ template "bundle.fullname" . }}
+    component: {{ template "bundle.fullname" . }}-{{ .Values.apiRegistrationJobName }}
+  

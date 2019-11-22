@@ -1,0 +1,9 @@
+docs:
+  - template:
+      displayName: "callidus-connector-0.1.0"
+      description: "SAP Callidus Cloud Connector documentation"
+      sources:
+        - type: markdown
+          name: docs
+          mode: package
+          filter: (docs/(.*?)\.md$)
