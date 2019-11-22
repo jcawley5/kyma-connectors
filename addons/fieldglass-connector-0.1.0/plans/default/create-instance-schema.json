@@ -18,7 +18,7 @@
       "description": "Password for event processing webhook",
       "format": "password"
     },
-    "x-applicationKey": {
+    "x_applicationKey": {
       "type": "string",
       "title": "x-ApplicationKey",
       "description": "Server-provided key for calling Fieldglass APIs"
@@ -39,7 +39,7 @@
     "cluster_domain",
     "username",
     "password",
-    "x-applicationKey",
+    "x_applicationKey",
     "system_url"
   ]
 }

@@ -11,7 +11,7 @@ data:
   PRODUCT_NAME: "SAP Fieldglass"
   APP_KIND: rest-with-apikey
   API_DESCRIPTION: "APIs for SAP Fieldglass"
-  SYSTEM_URL	: {{ .Values.system_url | quote }}
+  SYSTEM_URL: {{ .Values.system_url | quote }}
   API_SPECIFICATION_URL: https://raw.githubusercontent.com/jcawley5/kyma-connectors/master/addons/api-docs/fieldglass.json
 ---
 apiVersion: v1
@@ -24,7 +24,7 @@ metadata:
 data:
   headers.json: |-
     {
-      "x-applicationKey": {{ .Values.x-applicationKey | quote }}
+      "x-applicationKey": {{ .Values.x_applicationKey | quote }}
     }
   events.json: |-
     {
