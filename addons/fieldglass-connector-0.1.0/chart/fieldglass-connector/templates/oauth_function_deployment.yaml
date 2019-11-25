@@ -32,9 +32,12 @@ spec:
             "axios": "^0.18.0"
         }
     }
-  function: "const axios = require(\"axios\");\n\nmodule.exports = { \n    main: async
-    function (event, context) {\n        \n        let result = \"\";\n        let
-    url = process.env.oAuthURL;\n        const authValue
+  function: "const axios = require(\"axios\");\n\n//Performs the oAuth request to
+    the backend Fieldglass instance\n//clientId and clientSecret are populated from
+    the secret fieldglass-connector\n//Example call: \n//const { data: token } = await
+    axios.get(\"http://fieldglass-oauth-handler.<namespace>:8080\");\n//console.log(token);\n\nmodule.exports
+    = { \n    main: async function (event, context) {\n        //test\n        let
+    result = \"\";\n        let url = process.env.oAuthURL;\n        const authValue
     = \"Basic \" + Buffer.from(process.env.clientId + \":\" + process.env.clientSecret).toString('base64');\n
     \       const headers = {\n                \"x-ApplicationKey\": process.env.x_applicationKey,\n
     \               \"Authorization\": authValue,\n                \"Content-Type\":
