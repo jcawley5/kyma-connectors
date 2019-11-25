@@ -21,8 +21,8 @@ spec:
               secretKeyRef:
                 name: {{ template "bundle.fullname" . }}-fg-credentials
                 key: password
-            - name: oAuthURI
-              value: /api/oauth2/v2.0/token?grant_type=client_credentials&response_type=token
+            - name: oAuthURL
+              value: {{ template "oauth_server" . }}
             - name: x_applicationKey
               value: {{ .Values.x_applicationKey | quote }}
             name: fieldglass-oauth-handler
@@ -34,7 +34,7 @@ spec:
     }
   function: "const axios = require(\"axios\");\n\nmodule.exports = { \n    main: async
     function (event, context) {\n        \n        let result = \"\";\n        let
-    url = process.env.GATEWAY_URL + process.env.oAuthURI;\n        const authValue
+    url = process.env.oAuthURL;\n        const authValue
     = \"Basic \" + Buffer.from(process.env.clientId + \":\" + process.env.clientSecret).toString('base64');\n
     \       const headers = {\n                \"x-ApplicationKey\": process.env.x_applicationKey,\n
     \               \"Authorization\": authValue,\n                \"Content-Type\":
