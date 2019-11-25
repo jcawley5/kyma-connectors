@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: Secret
 metadata:
-  name: {{ template "bundle.fullname" . }}-fg-event-gw
+  name: {{ template "bundle.fullname" . }}-fg-credentials
   labels:
     app: {{ template "bundle.fullname" . }}
-    component: {{ template "bundle.fullname" . }}-fg-event-gw
+    component: {{ template "bundle.fullname" . }}-fg-credentials
 type: Opaque
 data:
-  EVENT_USER: {{ .Values.username | b64enc }}
-  EVENT_PASS: {{ .Values.password | b64enc }}
+  username: {{ .Values.username | b64enc }}
+  password: {{ .Values.password | b64enc }}
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -36,12 +36,12 @@ spec:
           containerPort: 8080
         envFrom:
           - secretRef:
-              name: {{ template "bundle.fullname" . }}-fg-event-gw
+              name: {{ template "bundle.fullname" . }}-fg-credentials
               optional: false
         args:
           - --app-name={{ .Values.application_name }}
-          - --password=$(EVENT_PASS)
-          - --username=$(EVENT_USER)
+          - --password=$(password)
+          - --username=$(username)
           - --event-publish-url=http://event-publish-service.kyma-system.svc.cluster.local:8080/v1/events
 ---
 kind: Service

@@ -1,0 +1,82 @@
+apiVersion: kubeless.io/v1beta1
+kind: Function
+metadata:
+  labels:
+    app: fieldglass-oauth-handler
+  name: fieldglass-oauth-handler
+spec:
+  deployment:
+    spec:
+      template:
+        spec:
+          containers:
+          - env:
+            - name: clientId
+              valueFrom:
+              secretKeyRef:
+                name: {{ template "bundle.fullname" . }}-fg-credentials
+                key: username
+            - name: clientSecret
+              valueFrom:
+              secretKeyRef:
+                name: {{ template "bundle.fullname" . }}-fg-credentials
+                key: password
+            - name: oAuthURI
+              value: /api/oauth2/v2.0/token?grant_type=client_credentials&response_type=token
+            - name: x_applicationKey
+              value: {{ .Values.x_applicationKey | quote }}
+            name: fieldglass-oauth-handler
+  deps: |-
+    {
+        "dependencies": {
+            "axios": "^0.18.0"
+        }
+    }
+  function: "const axios = require(\"axios\");\n\nmodule.exports = { \n    main: async
+    function (event, context) {\n        \n        let result = \"\";\n        let
+    url = process.env.GATEWAY_URL + process.env.oAuthURI;\n        const authValue
+    = \"Basic \" + Buffer.from(process.env.clientId + \":\" + process.env.clientSecret).toString('base64');\n
+    \       const headers = {\n                \"x-ApplicationKey\": process.env.x_applicationKey,\n
+    \               \"Authorization\": authValue,\n                \"Content-Type\":
+    \"application/json\"\n        };\n    \n        try {\n            result =  await
+    axios.post(url, {}, { headers });\n            console.log(\"successfully obtained
+    bearer token\");\n        } catch (error) {\n            console.log(\"An error
+    occurred attempting to obtain a bearer token: \", error);\n            throw new
+    Error(error);\n        }\n        \n        return  \"Bearer \" + result.data.access_token;\n
+    \   } \n}\n"
+  function-content-type: text
+  handler: handler.main
+  horizontalPodAutoscaler:
+    metadata:
+      creationTimestamp: null
+      labels:
+        function: fieldglass-oauth-handler
+      name: fieldglass-oauth-handler
+    spec:
+      maxReplicas: 1
+      metrics:
+      - resource:
+          name: cpu
+          targetAverageUtilization: 50
+        type: Resource
+      minReplicas: 1
+      scaleTargetRef:
+        apiVersion: apps/v1beta1
+        kind: Deployment
+        name: fieldglass-oauth-handler
+    status:
+      conditions: null
+      currentMetrics: null
+      currentReplicas: 0
+      desiredReplicas: 0
+  runtime: nodejs8
+  service:
+    ports:
+    - name: http-function-port
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+    selector:
+      created-by: kubeless
+      function: fieldglass-oauth-handler
+  timeout: ""

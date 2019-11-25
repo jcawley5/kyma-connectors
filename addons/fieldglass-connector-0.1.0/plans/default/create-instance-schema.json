@@ -10,12 +10,12 @@
     "username": {
       "type": "string",
       "title": "Username",
-      "description": "Username for event processing webhook"
+      "description": "Username for API oAuth and event processing webhook"
     },
     "password": {
       "type": "string",
       "title": "Password",
-      "description": "Password for event processing webhook",
+      "description": "Password for API oAuth and event processing webhook",
       "format": "password"
     },
     "x_applicationKey": {
