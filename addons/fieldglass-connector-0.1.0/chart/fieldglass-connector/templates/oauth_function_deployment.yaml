@@ -14,12 +14,12 @@ spec:
             - name: clientId
               valueFrom:
               secretKeyRef:
-                name: {{ template "bundle.fullname" . }}-fg-credentials
+                name: {{ template "bundle.fullname" . }}
                 key: username
             - name: clientSecret
               valueFrom:
               secretKeyRef:
-                name: {{ template "bundle.fullname" . }}-fg-credentials
+                name: {{ template "bundle.fullname" . }}
                 key: password
             - name: oAuthURL
               value: {{ template "oauth_server" . }}
