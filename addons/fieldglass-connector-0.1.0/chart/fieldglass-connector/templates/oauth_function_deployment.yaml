@@ -39,16 +39,25 @@ spec:
     url = `${process.env.Gateway}/api/vc/connector/jobposting`;\n//const { data: result
     } = await axios.get(url,  { params: { object_ref: \"postingId\"}, headers: { Authorization:
     token } });\n//console.log(result);\n\nmodule.exports = { \n    main: async function
-    (event, context) {\n        //test\n        let result = \"\";\n        let url
-    = process.env.oAuthURL;\n        const authValue = \"Basic \" + Buffer.from(process.env.clientId
-    + \":\" + process.env.clientSecret).toString('base64');\n        const headers
-    = {\n                \"x-ApplicationKey\": process.env.x_applicationKey,\n                \"Authorization\":
-    authValue,\n                \"Content-Type\": \"application/json\"\n        };\n
-    \   \n        try {\n            result =  await axios.post(url, {}, { headers
-    });\n            console.log(\"successfully obtained bearer token\");\n        }
-    catch (error) {\n            console.log(\"An error occurred attempting to obtain
-    a bearer token: \", error);\n            throw new Error(error);\n        }\n
-    \       \n        return  \"Bearer \" + result.data.access_token;\n    } \n}\n"
+    (event, context) {\n        //test\n        \n        const token = getCachedToken();\n
+    \       if(token !== null){\n            console.log(\"retrieving token from cached\");\n
+    \           return \"Bearer \" + token;\n        }\n        \n        let result
+    = \"\";\n        let url = process.env.oAuthURL;\n        const authValue = \"Basic
+    \" + Buffer.from(process.env.clientId + \":\" + process.env.clientSecret).toString('base64');\n
+    \       const headers = {\n                \"x-ApplicationKey\": process.env.x_applicationKey,\n
+    \               \"Authorization\": authValue,\n                \"Content-Type\":
+    \"application/json\"\n        };\n    \n        try {\n            result =  await
+    axios.post(url, {}, { headers });\n            console.log(\"successfully obtained
+    bearer token\");\n        } catch (error) {\n            console.log(\"An error
+    occurred attempting to obtain a bearer token: \", error);\n            throw new
+    Error(error);\n        }\n        \n        setCachedToken(result.data);\n        \n
+    \       return  \"Bearer \" + result.data.access_token;\n    } \n}\n\nvar tokenCache
+    = new Map();\n\nfunction getCachedToken(){\n    let now = new Date();\n    const
+    expires = tokenCache.get(\"expires_at\");\n\n    if(expires === undefined|| now.getTime()
+    > expires.getTime()){\n        return null;\n    }else{\n        return tokenCache.get(\"access_token\");\n
+    \   }\n}\n\nfunction setCachedToken(tokenData){\n    let expires = new Date();\n
+    \   expires.setSeconds(expires.getSeconds() + tokenData.expires_in);\n    tokenCache.set(\"access_token\",
+    tokenData.access_token);\n    tokenCache.set(\"expires_at\", expires);\n}\n"
   function-content-type: text
   handler: handler.main
   horizontalPodAutoscaler:
