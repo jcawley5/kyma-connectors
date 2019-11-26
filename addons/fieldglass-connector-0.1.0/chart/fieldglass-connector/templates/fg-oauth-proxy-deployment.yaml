@@ -27,8 +27,8 @@ spec:
               name: {{ template "bundle.fullname" . }}
               optional: false
         args:
-          - --forwardToUrl={{ template oauth_server .}}
-          - --apiKey={{ .Values.x_applicationKey | quote }}
+          - --forwardToUrl={{ template "oauth_server" .}}
+          - --apiKey={{ .Values.x_applicationKey }}
 ---
 kind: Service
 apiVersion: v1

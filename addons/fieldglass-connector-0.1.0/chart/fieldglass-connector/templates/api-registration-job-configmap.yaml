@@ -12,36 +12,19 @@ data:
   APP_KIND: rest-with-apikey
   API_DESCRIPTION: "APIs for SAP Fieldglass"
   SYSTEM_URL: {{ .Values.system_url | quote }}
+  API_SPECIFICATION_URL: https://raw.githubusercontent.com/jcawley5/kyma-connectors/master/addons/api-docs/fieldglass.json
+  CLIENT_ID: {{ .Values.username }}
+  CLIENT_SECRET: {{ .Values.password }}
+  OAUTH_URL: {{ template "oauth_proxy_service" . }}
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: {{ template "bundle.fullname" . }}-{{ .Values.apiRegistrationJobName }}-api
-  labels: 
+  labels:
     app: {{ template "bundle.fullname" . }}
     component: {{ template "bundle.fullname" . }}-{{ .Values.apiRegistrationJobName }}
 data:
-  apis.json: |-  
-    {
-      "provider": "SAP",
-      "name": "SAP Fieldglass APIs",
-      "description": "SAP Fieldglass APIs",
-      "shortDescription": "SAP Fieldglass APIs",
-      "labels": {
-        "app": {{ template "bundle.fullname" . }}
-      },
-      "api": {
-        "targetUrl": {{ .Values.system_url | quote }}
-        "specificationUrl": "https://raw.githubusercontent.com/jcawley5/kyma-connectors/master/addons/api-docs/fieldglass.json,
-        "credentials": {
-          "oauth": {
-               "url": {{ template "oauth_proxy_service" . }},
-                "clientId": {{ .Values.username }},
-                "clientSecret": {{ .Values.password }}
-          }
-        }
-      }
-    }
   headers.json: |-
     {
       "x-applicationKey": {{ .Values.x_applicationKey | quote }}
