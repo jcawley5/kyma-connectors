@@ -33,7 +33,7 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: {{ template "oauth_proxy_service_name" . }}
+  name: {{ .Values.oAuthProxyName }}
   labels:
     app: {{ template "bundle.fullname" . }}
     component: {{ template "bundle.fullname" . }}-{{ .Values.oAuthProxyName }}
