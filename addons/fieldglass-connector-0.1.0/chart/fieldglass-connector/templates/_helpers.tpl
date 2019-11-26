@@ -15,6 +15,11 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 {{- printf "%s%s" .Values.system_url "/api/oauth2/v2.0/token?grant_type=client_credentials&response_type=token" | trimSuffix " " | quote -}}
 {{- end -}}
 
+{{- define "oauth_proxy_service" -}}
+{{- printf "http://%s.%s:8080" .Values.oAuthProxyName .Release.Namespace | trimSuffix " " | quote -}}
+{{- end -}}
+
+
 
     
 

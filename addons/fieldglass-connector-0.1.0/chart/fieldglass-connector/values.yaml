@@ -5,3 +5,4 @@
 gatewayServerHost: fgeventgateway
 apiRegistrationJobName: api-registration-job
 eventBridgeName: fg-event-bridge
+oAuthProxyName: fg-oauth-proxy
