@@ -1,0 +1,45 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "bundle.fullname" . }}-{{ .Values.apiProxyName }}
+  labels:
+    app: {{ template "bundle.fullname" . }}
+    component: {{ template "bundle.fullname" . }}-{{ .Values.apiProxyName }}
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: {{ template "bundle.fullname" . }}
+        component: {{ template "bundle.fullname" . }}-{{ .Values.apiProxyName }}
+      annotations:
+        sidecar.istio.io/inject: "true"
+    spec:
+      containers:
+      - name: {{ .Values.apiProxyName }}
+        image: "jcawley5/cc-auth-proxy"
+        imagePullPolicy: Always
+        ports:
+        - name: http
+          containerPort: 8080
+        envFrom:
+          - secretRef:
+              name: {{ template "bundle.fullname" . }}
+              optional: false
+        args:
+          - --username={{ .Values.username }}
+          - --password={{ .Values.password }}
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ .Values.apiProxyName }}
+  labels:
+    app: {{ template "bundle.fullname" . }}
+    component: {{ template "bundle.fullname" . }}-{{ .Values.apiProxyName }}
+spec:
+  selector:
+    component: {{ template "bundle.fullname" . }}-{{ .Values.apiProxyName }}
+  ports:
+    - port: 8080
+      name: http

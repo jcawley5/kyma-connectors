@@ -1,0 +1,153 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "Service to expose Callidus ICM APIs",
+    "version": "1.0.0",
+    "title": "Callidus ICM APIs"
+  },
+  "tags": [{
+    "name": "callidus-icm-api",
+    "description": "Callidus ICM APIs",
+    "externalDocs": {
+      "description": "API for Listing Finding Entity Data",
+      "url": "https://mycompany.callidusinsurance.net/ICM/REST/entity"
+    }
+  }],
+  "paths": {
+    "/customer": {
+      "get": {
+        "tags": [
+          "API to get customers"
+        ],
+        "summary": "API to get customers",
+        "description": "API to get customers",
+        "operationId": "customer",
+        "parameters": [{
+            "name": "where",
+            "in": "path",
+            "description": "SQL where clause to be used for filtering the query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "joins",
+            "in": "path",
+            "description": "SQL join clause to be used for filtering the query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "order-by",
+            "in": "path",
+            "description": "SQL order-by clause to be used for filtering the query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Entity data queried successfully. Does not necessarily mean that matching records were found"
+          },
+          "400": {
+            "description": "Bad Request - Invalid SQL in where, order-by parameters; Invalid entity or EntityMapping referenced"
+          },
+          "403": {
+            "description": "Forbidden - Invalid session or user not authorized to use this API"
+          },
+          "500": {
+            "description": "Internal Server Error - Unexpected runtime error occurred. See ICM Application Log. Could result from invalid SQL passed in request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {},
+              "example": {
+                "status": {
+                  "@code": "200",
+                  "#text": "4 records found."
+                },
+                "messages": [],
+                "timestamp": "1311110612345",
+                "content": [{
+                  "@count": "4",
+                  "customer": [{
+                      "link": {
+                        "@rel": "self",
+                        "@href": "https://mycompany.callidusinsurance.net/ICM/REST/entity/customer/pk/13089267862890000"
+                      },
+                      "customerno": {
+                        "@label": "CustomerNo",
+                        "#text": "13089267862890000"
+                      },
+                      "customerid": {
+                        "@label": "CustomerId",
+                        "#text": "C1"
+                      }
+                    },
+                    {
+                      "link": {
+                        "@rel": "self",
+                        "@href": "https://mycompany.callidusinsurance.net/ICM/REST/entity/customer/pk/13089268043540000"
+                      },
+                      "customerno": {
+                        "@label": "CustomerNo",
+                        "#text": "13089268043540000"
+                      },
+                      "customerid": {
+                        "@label": "CustomerId",
+                        "#text": "C2"
+                      }
+                    },
+                    {
+                      "link": {
+                        "@rel": "self",
+                        "@href": "https://mycompany.callidusinsurance.net/ICM/REST/entity/customer/pk/13089268310840000"
+                      },
+                      "customerno": {
+                        "@label": "CustomerNo",
+                        "#text": "13089268310840000"
+                      },
+                      "customerid": {
+                        "@label": "CustomerId",
+                        "#text": "C3"
+                      }
+                    },
+                    {
+                      "link": {
+                        "@rel": "self",
+                        "@href": "https://mycompany.callidusinsurance.net/ICM/REST/entity/customer/pk/13089269032870000"
+                      },
+                      "customerno": {
+                        "@label": "CustomerNo",
+                        "#text": "13089269032870000"
+                      },
+                      "customerid": {
+                        "@label": "CustomerId",
+                        "#text": "C4"
+                      }
+                    }
+                  ]
+                }]
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "basicAuth": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  }
+}

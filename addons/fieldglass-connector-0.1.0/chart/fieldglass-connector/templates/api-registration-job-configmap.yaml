@@ -27,7 +27,8 @@ metadata:
 data:
   headers.json: |-
     {
-      "x-applicationKey": {{ .Values.x_applicationKey | quote }}
+      "x-applicationKey": {{ .Values.x_applicationKey | quote }},
+      "Accept": "application/json"
     }
   events.json: |-
     {
