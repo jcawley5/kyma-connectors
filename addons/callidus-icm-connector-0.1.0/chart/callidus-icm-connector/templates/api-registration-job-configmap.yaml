@@ -8,11 +8,11 @@ metadata:
 data:
   APPLICATION_NAME: {{ .Values.application_name | quote }}
   PROVIDER_NAME: "SAP"
-  PRODUCT_NAME: "SAP Callidus Cloud"
+  PRODUCT_NAME: "SAP Callidus ICM"
   SYSTEM_URL: {{ template "cc_proxy_service" . }}
   APP_KIND: rest-with-apikey
   API_SPECIFICATION_URL: https://raw.githubusercontent.com/jcawley5/kyma-connectors/master/addons/api-docs/callidusicm.json
-  API_DESCRIPTION: "APIs for SAP Callidus Cloud" 
+  API_DESCRIPTION: "APIs for SAP Callidus ICM" 
 ---
 apiVersion: v1
 kind: ConfigMap

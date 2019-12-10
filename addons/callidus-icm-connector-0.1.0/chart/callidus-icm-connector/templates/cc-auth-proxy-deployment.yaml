@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: {{ .Values.apiProxyName }}
-        image: "jcawley5/cc-auth-proxy"
+        image: "jcawley5/cc-icm-proxy"
         imagePullPolicy: Always
         ports:
         - name: http

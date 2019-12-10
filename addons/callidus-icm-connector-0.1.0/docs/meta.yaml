@@ -1,7 +1,7 @@
 docs:
   - template:
-      displayName: "callidus-connector-0.1.0"
-      description: "SAP Callidus Cloud Connector documentation"
+      displayName: "callidus-icm-connector-0.1.0"
+      description: "SAP Callidus ICM Connector documentation"
       sources:
         - type: markdown
           name: docs
