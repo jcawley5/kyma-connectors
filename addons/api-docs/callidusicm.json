@@ -1,27 +1,36 @@
+OpenAPI - GUI v3
+Top
+Settings
+Save
+Undo
+Follow
+GitHub
+
 {
   "openapi": "3.0.0",
   "info": {
     "description": "Service to expose Callidus ICM APIs",
     "version": "1.0.0",
-    "title": "Callidus ICM APIs"
+    "title": "Callidus ICM APIs",
+    "contact": {}
   },
   "tags": [{
     "name": "callidus-icm-api",
     "description": "Callidus ICM APIs",
     "externalDocs": {
       "description": "API for Listing Finding Entity Data",
-      "url": "https://mycompany.callidusinsurance.net/ICM/REST/entity"
+      "url": "https://mycompany.callidusinsurance.net/ICM/REST"
     }
   }],
   "paths": {
-    "/customer": {
+    "/REST/entity/{entity}": {
       "get": {
         "tags": [
-          "API to get customers"
+          "API to get entities"
         ],
-        "summary": "API to get customers",
-        "description": "API to get customers",
-        "operationId": "customer",
+        "summary": "API to list all records for an entity",
+        "description": "API to list all records for an entity",
+        "operationId": "",
         "parameters": [{
             "name": "where",
             "in": "path",
@@ -139,6 +148,63 @@
             }
           }
         }
+      },
+      "post": {
+        "summary": "Request parameters",
+        "description": "The request may be form-based (application/x-www-form-urlencoded) or XML-based (multipart application/xml request). When posting an XML file, you may persist multiple records including child-data.\nWhen posting form-based data, you're limited to persisting a single row.",
+        "parameters": [{
+          "name": "doAsUser",
+          "in": "header",
+          "required": false,
+          "schema": {
+            "type": "string"
+          },
+          "description": "doAsUser (optional): The valid userId from UsrSet.UserId to be used. When this param is valid and is not blank, this userId will be used while updating all the audit-related information. This includes the FstUser and LstUser fields on the entity row, as well as the Audit.UserNo."
+        }],
+        "operationId": "",
+        "responses": {
+          "default": {
+            "description": "Default response"
+          }
+        }
+      },
+      "put": {
+        "summary": "",
+        "description": "",
+        "parameters": [{
+          "name": "doAsUser",
+          "in": "header",
+          "required": false,
+          "schema": {
+            "type": "string"
+          },
+          "description": "doAsUser (optional): The valid userId from UsrSet.UserId to be used. When this param is valid and is not blank, this userId will be used while updating all the audit-related information. This includes the FstUser and LstUser fields on the entity row, as well as the Audit.UserNo."
+        }],
+        "operationId": "",
+        "responses": {
+          "default": {
+            "description": "Default response"
+          }
+        }
+      },
+      "delete": {
+        "summary": "",
+        "description": "/REST/entity/{entity}/pk/{objectno}\n/REST/entity/{entity}/id/{entityid}\nNote that not all entities have a unique id field and therefore the /id/ path is not available for all entities.",
+        "parameters": [{
+          "name": "doAsUser",
+          "in": "header",
+          "required": false,
+          "schema": {
+            "type": "string"
+          },
+          "description": "doAsUser (optional): The valid userId from UsrSet.UserId to be used. When this param is valid and is not blank, this userId will be used while updating all the audit-related information. This includes the FstUser and LstUser fields on the entity row, as well as the Audit.UserNo."
+        }],
+        "operationId": "",
+        "responses": {
+          "default": {
+            "description": "Default response"
+          }
+        }
       }
     }
   },
@@ -148,6 +214,11 @@
         "type": "http",
         "scheme": "basic"
       }
-    }
-  }
+    },
+    "links": {},
+    "callbacks": {},
+    "schemas": {}
+  },
+  "security": [],
+  "servers": []
 }

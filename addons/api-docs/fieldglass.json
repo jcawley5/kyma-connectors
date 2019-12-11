@@ -6,10 +6,10 @@
     "title": "SAP Fieldglass APIs"
   },
   "paths": {
-    "/api/vc/jobseeker": {
+    "/api/vc/connector/jobseeker": {
       "post": {
         "summary": "Push Job Seeker",
-        "description": "The following method posts job seeker data to SAP Fieldglass from the external system:\n",
+        "description": "The following method posts job seeker data to SAP Fieldglass from the external system",
         "parameters": [],
         "operationId": "",
         "responses": {
@@ -267,9 +267,9 @@
         }
       }
     },
-    "/api/vc/jobposting": {
+    "/api/vc/connector/jobposting": {
       "get": {
-        "summary": "Get Job Seeker",
+        "summary": "Get Job Posting",
         "description": "The following method retrieves detail for a Job Posting ID form SAP Fieldglass based on the previously received identifier.",
         "parameters": [{
           "name": "object_ref",
