@@ -41,10 +41,10 @@ spec:
         args:
           - --password=$(password)
           - --username=$(username)
-          - --baseURL={{ .Values.system_url | qoute }}
+          - --baseURL={{ .Values.system_url }}
           - --sessiontimeout=60
-          - --apiPath="/ICM"
-          - --loginPath="/REST/auth/login"
+          - --apiPath=/ICM
+          - --loginPath=/REST/auth/login
         livenessProbe:
           httpGet:
             path: /healthz
