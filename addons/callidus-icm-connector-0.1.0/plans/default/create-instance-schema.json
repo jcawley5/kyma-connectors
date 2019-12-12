@@ -21,7 +21,7 @@
     "system_url": {
       "type": "string",
       "title": "System URL",
-      "description": "The base URL of the SAP Callidus ICM instance. For example, https://devtst2.callidusinsurance.net"
+      "description": "The base URL of the SAP Callidus ICM instance. For example, https://mycompany.callidusinsurance.net"
     },
     "cluster_domain": {
       "type": "string",
@@ -32,6 +32,7 @@
   "required": [
     "application_name",
     "cluster_domain",
+    "system_url",
     "username",
     "password"
   ]

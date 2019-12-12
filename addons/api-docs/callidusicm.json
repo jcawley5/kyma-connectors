@@ -18,7 +18,7 @@
     "/REST/entity/{entity}": {
       "get": {
         "tags": [
-          "API to get entities"
+          "Entities API"
         ],
         "summary": "API to list all records for an entity",
         "description": "API to list all records for an entity",
@@ -158,11 +158,14 @@
           "default": {
             "description": "Default response"
           }
-        }
+        },
+        "tags": [
+          "Entities API"
+        ]
       },
       "put": {
-        "summary": "",
-        "description": "",
+        "summary": "Request parameters",
+        "description": "The request may be form-based (application/x-www-form-urlencoded) or XML-based (multipart application/xml request). When posting an XML file, you may persist multiple records including child-data.\nWhen posting form-based data, you're limited to persisting a single row.",
         "parameters": [{
           "name": "doAsUser",
           "in": "header",
@@ -177,7 +180,10 @@
           "default": {
             "description": "Default response"
           }
-        }
+        },
+        "tags": [
+          "Entities API"
+        ]
       },
       "delete": {
         "summary": "",
@@ -196,7 +202,10 @@
           "default": {
             "description": "Default response"
           }
-        }
+        },
+        "tags": [
+          "Entities API"
+        ]
       }
     }
   },

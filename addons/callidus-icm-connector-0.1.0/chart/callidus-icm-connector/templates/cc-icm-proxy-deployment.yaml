@@ -41,6 +41,25 @@ spec:
         args:
           - --password=$(password)
           - --username=$(username)
+          - --baseURL={{ .Values.system_url | qoute }}
+          - --sessiontimeout=60
+          - --apiPath="/ICM"
+          - --loginPath="/REST/auth/login"
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+          initialDelaySeconds: 60
+          periodSeconds: 60
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 8080
+          periodSeconds: 30
+          initialDelaySeconds: 5
+          failureThreshold: 1
+          successThreshold: 1
 ---
 kind: Service
 apiVersion: v1
