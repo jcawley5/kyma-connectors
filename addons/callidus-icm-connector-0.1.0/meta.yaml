@@ -2,7 +2,7 @@ name: callidus-icm-connector
 version: 0.1.0
 description: "Enables the preview integration of SAP Callidus ICM. It is not recommended for production scenarios."
 id: ef0cf2d7-f2ea-4f6f-b815-fdb73fe49bec
-displayName: "[Preview] SAP Callidus ICM Connector"
+displayName: "[Preview] SAP Callidus ICM - Connector"
 tags: preview,callidus,icm,connector
 labels:
   preview: "true"

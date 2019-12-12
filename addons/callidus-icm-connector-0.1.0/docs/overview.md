@@ -13,7 +13,7 @@ The SAP Callidus ICM Connector allows you to integrate an SAP Callidus ICM tenan
 2. Register a new system providing an appropriate name (e.g. 'callidus-icm')
 3. Click **Kyma Console**.
 4. In the Console, choose the Namespace, go to **Catalog** and select **[Preview] SAP Callidus ICM - Connector**.
-5. Click **Add once** to install and configure the SAP Cloud for Customer Connector:
+5. Click **Add once** to install and configure the SAP Callidus ICM Connector:
 
     | Parameter            | Description                                                                                    |
     | -------------------- | ---------------------------------------------------------------------------------------------- |
