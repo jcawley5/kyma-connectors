@@ -9,7 +9,7 @@
     "/api/vc/connector/jobseeker": {
       "post": {
         "summary": "Push Job Seeker",
-        "description": "The following method posts job seeker data to SAP Fieldglass from the external system",
+        "description": "The following method posts job seeker data",
         "parameters": [],
         "operationId": "",
         "responses": {
@@ -270,7 +270,7 @@
     "/api/vc/connector/jobposting": {
       "get": {
         "summary": "Get Job Posting",
-        "description": "The following method retrieves detail for a Job Posting ID form SAP Fieldglass based on the previously received identifier.",
+        "description": "The following method retrieves detail for a Job Posting ID",
         "parameters": [{
           "name": "object_ref",
           "in": "query",
@@ -311,7 +311,7 @@
       },
       "post": {
         "summary": "Push Job Posting",
-        "description": "The following method posts job posting data to the external system upon distribution, update, halt, or closure of the job posting in SAP Fieldglass. ",
+        "description": "The following method posts job posting data",
         "parameters": [],
         "operationId": "",
         "responses": {
